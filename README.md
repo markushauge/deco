@@ -5,9 +5,6 @@ Declarative and component based UI library for C#
 public class App : Component {
     private readonly State<int> _count = 0;
 
-    // Bindings ensure that the components are rerendered when state changes
-    public override IEnumerable<IBinding> Bindings => new[] { _count };
-
     public override IView Render() =>
         new VStack {
             new HStack {

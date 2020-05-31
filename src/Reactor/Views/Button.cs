@@ -2,7 +2,12 @@
 
 namespace Reactor.Views {
     public class Button : View {
-        public string Body { get; set; } = "";
-        public Action? OnClick { get; set; } = null;
+        public string Body { get; }
+        public Action OnClick { get; }
+
+        public Button(string body, Action onClick) {
+            Body = body;
+            OnClick = onClick;
+        }
     }
 }

@@ -11,14 +11,8 @@ namespace Reactor.Demo.Components {
         public override IView Render() =>
             new VStack {
                 new HStack {
-                    new Button {
-                        Body = "Previous",
-                        OnClick = () => _page.Value--
-                    },
-                    new Button {
-                        Body = "Next",
-                        OnClick = () => _page.Value++
-                    }
+                    new Button("Previous", () => _page.Value--),
+                    new Button("Next", () => _page.Value++)
                 }
             };
     }

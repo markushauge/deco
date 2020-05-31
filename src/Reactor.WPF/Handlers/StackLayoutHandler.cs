@@ -27,7 +27,7 @@ namespace Reactor.WPF.Handlers {
             nativeStack.Children.Clear();
 
             foreach (var child in newStack.Children) {
-                _registry.Render(child, nativeStack);
+                nativeStack.Children.Add(_registry.Render(child));
             }
         }
     }

@@ -19,7 +19,7 @@ namespace Reactor.WPF.Handlers {
             var virtualView = component.Render();
             
             if (virtualView != null) {
-                _registry.Render(virtualView, container);
+                container.Children.Add(_registry.Render(virtualView));
             }
 
             _virtualView = virtualView;

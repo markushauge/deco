@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 
 namespace Reactor {
-    public abstract class ViewHandlerRegistry<TViewHandler, TNativeView>
-        where TViewHandler : IViewHandler<TNativeView>
+    public abstract class ViewHandlerRegistry<TNativeView>
         where TNativeView : class
     {
-        private readonly IDictionary<Type, Func<TViewHandler>> _registry = new Dictionary<Type, Func<TViewHandler>>();
+        private readonly IDictionary<Type, Func<IViewHandler<TNativeView>>> _registry =
+            new Dictionary<Type, Func<IViewHandler<TNativeView>>>();
 
-        public Func<TViewHandler> this[Type key] {
+        public Func<IViewHandler<TNativeView>> this[Type key] {
             get => _registry[key];
             set => _registry[key] = value;
         }
@@ -16,7 +16,7 @@ namespace Reactor {
         public TNativeView Render(IView view) =>
             CreateViewHandler(view).Render(view);
 
-        public TViewHandler CreateViewHandler(IView view) {
+        public IViewHandler<TNativeView> CreateViewHandler(IView view) {
             foreach (var type in view.GetType().GetTypes()) {
                 if (_registry.ContainsKey(type)) {
                     return _registry[type]();

@@ -18,9 +18,10 @@ namespace Reactor.WPF {
                 throw new Exception($"Could not find {name}");
             }
 
-            var view = (IView)Activator.CreateInstance(type)!;
+            var virtualView = (IView)Activator.CreateInstance(type)!;
+            var nativeView = ViewHandlerRegistry.Default.Render(virtualView);
             Children.Clear();
-            ViewHandlerRegistry.Default.Render(view, this);
+            Children.Add(nativeView);
         }
     }
 }

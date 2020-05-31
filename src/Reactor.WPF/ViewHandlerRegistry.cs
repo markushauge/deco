@@ -2,10 +2,9 @@
 using Reactor.WPF.Handlers;
 
 using WPFView = System.Windows.UIElement;
-using WPFContainer = System.Windows.Controls.Panel;
 
 namespace Reactor.WPF {
-    public class ViewHandlerRegistry : ViewHandlerRegistry<IViewHandler<WPFView>, WPFView> {
+    public class ViewHandlerRegistry : ViewHandlerRegistry<WPFView> {
         public static readonly ViewHandlerRegistry Default = new ViewHandlerRegistry();
 
         public ViewHandlerRegistry() {
@@ -20,12 +19,6 @@ namespace Reactor.WPF {
             this[typeof(TextInput)] = () => new TextInputHandler();
             this[typeof(Button)] = () => new ButtonHandler();
             this[typeof(ScrollView)] = () => new ScrollViewHandler(this);
-        }
-
-        public void Render(IView virtualView, WPFContainer container) {
-            var viewHandler = CreateViewHandler(virtualView);
-            var nativeView = viewHandler.Render(virtualView);
-            container.Children.Add(nativeView);
         }
     }
 }

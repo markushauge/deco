@@ -1,4 +1,6 @@
-﻿using WPFView = System.Windows.UIElement;
+﻿using Reactor.Binding;
+
+using WPFView = System.Windows.UIElement;
 using WPFContainer = System.Windows.Controls.ContentControl;
 
 namespace Reactor.WPF.Handlers {
@@ -25,7 +27,7 @@ namespace Reactor.WPF.Handlers {
             if (_container == null) {
                 _container = new WPFContainer();
 
-                foreach (var binding in component.Bindings) {
+                foreach (var binding in BindingRegistry.Default[component]) {
                     binding.Changed += () => RenderComponent(component, _container);
                 }
             }

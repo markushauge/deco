@@ -5,13 +5,13 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Reactor.Binding {
-    public class BindingRegistry : Dictionary<Type, Func<object, IEnumerable<IBinding>>> {
+    public class BindingRegistry {
         public static readonly BindingRegistry Default = new BindingRegistry();
 
         private static readonly ParameterExpression ObjectParameter = Expression.Parameter(typeof(object));
 
-        private static Func<object, IBinding> CreateGetter(Type type, FieldInfo fieldInfo) {
-            var expression = Expression.Lambda<Func<object, IBinding>>(
+        private static Expression<Func<object, IBinding>> CreateExpession(Type type, FieldInfo fieldInfo) =>
+            Expression.Lambda<Func<object, IBinding>>(
                 Expression.Field(
                     Expression.Convert(ObjectParameter, type),
                     fieldInfo
@@ -19,10 +19,7 @@ namespace Reactor.Binding {
                 ObjectParameter
             );
 
-            return expression.Compile();
-        }
-        
-        public void Register(Type type) {
+        private static Func<object, IEnumerable<IBinding>> CreateGetter(Type type) {
             var getters = type
                 .GetFields(
                     BindingFlags.Public |
@@ -30,19 +27,24 @@ namespace Reactor.Binding {
                     BindingFlags.Instance
                 )
                 .Where(fieldInfo => typeof(IBinding).IsAssignableFrom(fieldInfo.FieldType))
-                .Select(fieldInfo => CreateGetter(type, fieldInfo));
+                .Select(fieldInfo => CreateExpession(type, fieldInfo).Compile());
 
-            this[type] = target => getters.Select(getter => getter(target));
+            return target => getters.Select(getter => getter(target));
         }
 
-        public IEnumerable<IBinding> GetBindings(object target) {
-            var type = target.GetType();
+        private readonly IDictionary<Type, Func<object, IEnumerable<IBinding>>> _registry =
+            new Dictionary<Type, Func<object, IEnumerable<IBinding>>>();
+        
+        public IEnumerable<IBinding> this[object target] {
+            get {
+                var type = target.GetType();
 
-            if (!ContainsKey(type)) {
-                Register(type);
+                if (!_registry.ContainsKey(type)) {
+                    _registry[type] = CreateGetter(type);
+                }
+
+                return _registry[type].Invoke(target);
             }
-
-            return this[type](target);
         }
     }
 }

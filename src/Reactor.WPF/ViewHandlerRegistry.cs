@@ -11,17 +11,17 @@ namespace Reactor.WPF {
         public BindingRegistry BindingRegistry = new BindingRegistry();
 
         public ViewHandlerRegistry() {
+            // Containers
             this[typeof(Component)] = () => new ComponentHandler(this);
-
-            // Layouts
             this[typeof(StackLayout)] = () => new StackLayoutHandler(this);
             this[typeof(GridLayout)] = () => new GridLayoutHandler(this);
+            this[typeof(ListView)] = () => new ListViewHandler(this);
+            this[typeof(ScrollView)] = () => new ScrollViewHandler(this);
 
             // Controls
             this[typeof(Text)] = () => new TextHandler();
             this[typeof(TextInput)] = () => new TextInputHandler();
             this[typeof(Button)] = () => new ButtonHandler();
-            this[typeof(ScrollView)] = () => new ScrollViewHandler(this);
         }
     }
 }

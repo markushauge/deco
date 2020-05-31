@@ -34,8 +34,6 @@ namespace Reactor.WPF.Binding {
         private readonly AsyncState<ResourceState> _state = ResourceState.FromLoading(false);
         private readonly Func<TIn, Task<TOut>> _execute;
 
-        protected override IBinding[] Bindings => new IBinding[] { _state };
-
         public bool Loading => _state.Value.Loading;
         public TOut? Data => _state.Value.Data;
         public Exception? Exception => _state.Value.Exception;

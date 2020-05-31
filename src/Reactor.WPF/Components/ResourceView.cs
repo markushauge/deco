@@ -1,7 +1,6 @@
 ﻿using Reactor.Views;
 using Reactor.WPF.Binding;
 using System;
-using System.Collections.Generic;
 
 namespace Reactor.WPF.Components {
     public class ResourceView<TIn, TOut> : Component
@@ -13,8 +12,6 @@ namespace Reactor.WPF.Components {
         public Func<IView?> RenderLoading { get; set; } = () => new Text("Loading...");
         public Func<TOut, IView?> RenderData { get; set; } = data => null;
         public Func<Exception, IView?> RenderException { get; set; } = ex => new Text(ex.Message);
-
-        public override IEnumerable<IBinding> Bindings => new IBinding[] { _resource };
 
         public ResourceView(TIn input, Resource<TIn, TOut> resource) {
             _input = input;

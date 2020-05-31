@@ -9,8 +9,6 @@ namespace Reactor.Demo.Components {
     public class App : Component {
         private readonly State<int> _page = 1;
 
-        public override IEnumerable<IBinding> Bindings => new[] { _page };
-
         private IView RenderTodos() =>
             new ScrollView(
                 new VStack {

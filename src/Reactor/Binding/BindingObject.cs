@@ -1,8 +1,7 @@
 ﻿using System;
 
 namespace Reactor.Binding {
-    public abstract class BindingObject : IBinding {
-        protected abstract IBinding[] Bindings { get; }
+    public abstract class BindingObject : Bindable, IBinding {
         public event Action? Changed;
 
         public BindingObject() {

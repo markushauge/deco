@@ -1,7 +1,7 @@
 ﻿using Reactor.Binding;
 using System.Windows;
 
-namespace Reactor {
+namespace Reactor.WPF.Binding {
     public class AsyncState<T> : State<T> {
         public static implicit operator AsyncState<T>(T value) => new AsyncState<T>(value);
          

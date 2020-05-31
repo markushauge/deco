@@ -1,6 +1,6 @@
-﻿using Reactor.Components;
-using Reactor.Demo.Model;
+﻿using Reactor.Demo.Model;
 using Reactor.Views;
+using Reactor.WPF.Components;
 
 namespace Reactor.Demo.Components {
     public class Todo : Component {
@@ -11,7 +11,7 @@ namespace Reactor.Demo.Components {
         }
 
         public override IView? Render() =>
-            new Resource<int, TodoModel>(_id, TodoApi.GetTodo) {
+            new ResourceView<int, TodoModel>(_id, TodoApi.GetTodo) {
                 RenderData = data =>
                     new VStack {
                         new Text($"Id: {data.Id}"),

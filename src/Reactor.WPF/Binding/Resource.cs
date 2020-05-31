@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Reactor.Binding;
+using System;
 using System.Threading.Tasks;
 
-namespace Reactor.Binding {
+namespace Reactor.WPF.Binding {
 
-    public class ResourceBinding<TIn, TOut> : BindingObject
+    public class Resource<TIn, TOut> : BindingObject
         where TOut : class
     {
         private readonly struct ResourceState {
@@ -27,8 +28,8 @@ namespace Reactor.Binding {
             }
         }
 
-        public static implicit operator ResourceBinding<TIn, TOut>(Func<TIn, Task<TOut>> execute) =>
-            new ResourceBinding<TIn, TOut>(execute);
+        public static implicit operator Resource<TIn, TOut>(Func<TIn, Task<TOut>> execute) =>
+            new Resource<TIn, TOut>(execute);
 
         private readonly AsyncState<ResourceState> _state = ResourceState.FromLoading(false);
         private readonly Func<TIn, Task<TOut>> _execute;
@@ -39,7 +40,7 @@ namespace Reactor.Binding {
         public TOut? Data => _state.Value.Data;
         public Exception? Exception => _state.Value.Exception;
 
-        public ResourceBinding(Func<TIn, Task<TOut>> execute) {
+        public Resource(Func<TIn, Task<TOut>> execute) {
             _execute = execute;
         }
 

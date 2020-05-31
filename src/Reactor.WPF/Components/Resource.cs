@@ -1,14 +1,14 @@
-﻿using Reactor.Binding;
-using Reactor.Views;
+﻿using Reactor.Views;
+using Reactor.WPF.Binding;
 using System;
 using System.Collections.Generic;
 
-namespace Reactor.Components {
-    public class Resource<TIn, TOut> : Component
+namespace Reactor.WPF.Components {
+    public class ResourceView<TIn, TOut> : Component
         where TOut : class
     {
         private readonly TIn _input;
-        private readonly ResourceBinding<TIn, TOut> _resource;
+        private readonly Resource<TIn, TOut> _resource;
 
         public Func<IView?> RenderLoading { get; set; } = () => new Text("Loading...");
         public Func<TOut, IView?> RenderData { get; set; } = data => null;
@@ -16,7 +16,7 @@ namespace Reactor.Components {
 
         public override IEnumerable<IBinding> Bindings => new IBinding[] { _resource };
 
-        public Resource(TIn input, ResourceBinding<TIn, TOut> resource) {
+        public ResourceView(TIn input, Resource<TIn, TOut> resource) {
             _input = input;
             _resource = resource;
         }

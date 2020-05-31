@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deco", "src\Deco\Deco.csproj", "{0E25C928-E542-4B53-80FF-68C5570D1A3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deco.Demo", "src\Deco.Demo\Deco.Demo.csproj", "{A60C0DC3-8885-460F-991D-E9AB1CE70A6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deco.WPF", "src\Deco.WPF\Deco.WPF.csproj", "{8C5ECEF7-DD45-4F41-903D-FAE4D7A3CD5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E25C928-E542-4B53-80FF-68C5570D1A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E25C928-E542-4B53-80FF-68C5570D1A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E25C928-E542-4B53-80FF-68C5570D1A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E25C928-E542-4B53-80FF-68C5570D1A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A60C0DC3-8885-460F-991D-E9AB1CE70A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A60C0DC3-8885-460F-991D-E9AB1CE70A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A60C0DC3-8885-460F-991D-E9AB1CE70A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A60C0DC3-8885-460F-991D-E9AB1CE70A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5ECEF7-DD45-4F41-903D-FAE4D7A3CD5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5ECEF7-DD45-4F41-903D-FAE4D7A3CD5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5ECEF7-DD45-4F41-903D-FAE4D7A3CD5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5ECEF7-DD45-4F41-903D-FAE4D7A3CD5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DD47D7F-D5FC-49EC-AF3F-D5E90229C01F}
+	EndGlobalSection
+EndGlobal

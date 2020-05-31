@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reactor", "src\Reactor\Reactor.csproj", "{0E25C928-E542-4B53-80FF-68C5570D1A3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reactor.Demo", "src\Reactor.Test\Reactor.Demo.csproj", "{A60C0DC3-8885-460F-991D-E9AB1CE70A6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reactor.Demo", "src\Reactor.Demo\Reactor.Demo.csproj", "{A60C0DC3-8885-460F-991D-E9AB1CE70A6D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reactor.WPF", "src\Reactor.WPF\Reactor.WPF.csproj", "{8C5ECEF7-DD45-4F41-903D-FAE4D7A3CD5F}"
 EndProject

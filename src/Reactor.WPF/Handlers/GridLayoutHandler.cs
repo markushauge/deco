@@ -31,6 +31,14 @@ namespace Reactor.WPF.Handlers {
             return numbers.Select(ToGridLength).ToArray();
         }
 
+        private GridLayout.Area GetArea(string? area, GridLayout grid) {
+            if (area == null || grid.Areas == null || !grid.Areas.ContainsKey(area)) {
+                return GridLayout.Area.Default;
+            }
+
+            return grid.Areas[area];
+        }
+
         protected override WPFGridLayout CreateView(GridLayout virtualView) => new WPFGridLayout();
         
         protected override void UpdateProperties(GridLayout? oldGrid, GridLayout newGrid, WPFGridLayout nativeGrid) {
@@ -58,12 +66,13 @@ namespace Reactor.WPF.Handlers {
 
                 var body = _registry.Render(child.Body);
                 nativeGrid.Children.Add(body);
+                var area = GetArea(child.Area, newGrid);
 
-                var (column, columnSpan) = child.Column.GetOffsetAndLength(columns.Count);
+                var (column, columnSpan) = area.Column.GetOffsetAndLength(columns.Count);
                 WPFGridLayout.SetColumn(body, column);
                 WPFGridLayout.SetColumnSpan(body, Math.Max(columnSpan, 1));
 
-                var (row, rowSpan) = child.Row.GetOffsetAndLength(rows.Count);
+                var (row, rowSpan) = area.Row.GetOffsetAndLength(rows.Count);
                 WPFGridLayout.SetRow(body, row);
                 WPFGridLayout.SetRowSpan(body, Math.Max(rowSpan, 1));
             }

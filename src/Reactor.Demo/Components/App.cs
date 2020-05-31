@@ -24,13 +24,21 @@ namespace Reactor.Demo.Components {
         public override IView Render() =>
             new GridLayout {
                 Rows = new[] { Number.Auto, 1.Fr() },
+                Areas = new Dictionary<string, GridLayout.Area> {
+                    ["header"] = new GridLayout.Area {
+                        Row = 0..1
+                    },
+                    ["content"] = new GridLayout.Area {
+                        Row = 1..2
+                    }
+                },
                 Children = new GridLayout.Item[] {
                     new GridLayout.Item {
-                        Row = 0..1,
+                        Area = "header",
                         Body = new Pagination(_page)
                     },
                     new GridLayout.Item {
-                        Row = 1..2,
+                        Area = "content",
                         Body = RenderTodos()
                     }
                 }

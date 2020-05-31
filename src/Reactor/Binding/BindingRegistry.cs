@@ -6,8 +6,6 @@ using System.Reflection;
 
 namespace Reactor.Binding {
     public class BindingRegistry {
-        public static readonly BindingRegistry Default = new BindingRegistry();
-
         private static readonly ParameterExpression ObjectParameter = Expression.Parameter(typeof(object));
 
         private static Expression<Func<object, IBinding>> CreateExpession(Type type, FieldInfo fieldInfo) =>

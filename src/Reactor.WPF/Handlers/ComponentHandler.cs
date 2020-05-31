@@ -1,4 +1,5 @@
 ﻿using Reactor.Binding;
+using System;
 
 using WPFView = System.Windows.UIElement;
 using WPFContainer = System.Windows.Controls.ContentControl;
@@ -20,16 +21,23 @@ namespace Reactor.WPF.Handlers {
             }
         }
 
+        private void Bind(object target, Action action) {
+            foreach (var binding in _registry.BindingRegistry[target]) {
+                binding.Changed += action;
+                
+                if (binding is BindingObject bindingObject) {
+                    Bind(binding, bindingObject.OnChanged);
+                }
+            }
+        }
+
         public WPFView Render(IView view) {
             var component = (Component)view;
             component.OnMount();
 
             if (_container == null) {
                 _container = new WPFContainer();
-
-                foreach (var binding in BindingRegistry.Default[component]) {
-                    binding.Changed += () => RenderComponent(component, _container);
-                }
+                Bind(component, () => RenderComponent(component, _container));
             }
 
             RenderComponent(component, _container);

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Windows.Controls;
 
 namespace Reactor.WPF {
-    public abstract class ViewHost : Grid {
+    public abstract class ViewHost : ContentControl {
         protected abstract Assembly Assembly { get; }
         protected abstract string Namespace { get; }
 
@@ -18,10 +18,8 @@ namespace Reactor.WPF {
                 throw new Exception($"Could not find {name}");
             }
 
-            var virtualView = (IView)Activator.CreateInstance(type)!;
-            var nativeView = ViewHandlerRegistry.Default.Render(virtualView);
-            Children.Clear();
-            Children.Add(nativeView);
+            var view = (IView)Activator.CreateInstance(type)!;
+            Content = ViewHandlerRegistry.Default.Render(view);
         }
     }
 }

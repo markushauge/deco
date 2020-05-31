@@ -1,10 +1,9 @@
 ﻿using WPFView = System.Windows.UIElement;
-using WPFContainer = System.Windows.Controls.Grid;
+using WPFContainer = System.Windows.Controls.ContentControl;
 
 namespace Reactor.WPF.Handlers {
     public class ComponentHandler : IViewHandler<WPFView> {
         private readonly ViewHandlerRegistry _registry;
-        private IView? _virtualView;
         private WPFContainer? _container;
 
         public ComponentHandler(ViewHandlerRegistry registry) {
@@ -12,17 +11,11 @@ namespace Reactor.WPF.Handlers {
         }
 
         private void RenderComponent(Component component, WPFContainer container) {
-            if (_virtualView != null) {
-                container.Children.RemoveAt(0);
-            }
-
             var virtualView = component.Render();
             
             if (virtualView != null) {
-                container.Children.Add(_registry.Render(virtualView));
+                container.Content = _registry.Render(virtualView);
             }
-
-            _virtualView = virtualView;
         }
 
         public WPFView Render(IView view) {

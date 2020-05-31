@@ -15,14 +15,15 @@ namespace Reactor.WPF.Handlers {
             _registry = registry;
         }
 
-        private GridLength ToGridLength(Number? number) =>
+        private GridLength ToGridLength(Number number) =>
             number switch {
                 (var value, Unit.Pixel) => new GridLength(value, GridUnitType.Pixel),
                 (var value, Unit.Fractional) => new GridLength(value, GridUnitType.Star),
-                _ => new GridLength(0, GridUnitType.Auto)
+                (_, Unit.Auto) => new GridLength(0, GridUnitType.Auto),
+                _ => throw new InvalidOperationException()
             };
 
-        private IReadOnlyList<GridLength> ToGridLengths(IEnumerable<Number?>? numbers) {
+        private IReadOnlyList<GridLength> ToGridLengths(IEnumerable<Number>? numbers) {
             if (numbers == null) {
                 return new GridLength[0];
             }

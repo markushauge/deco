@@ -9,7 +9,7 @@ namespace Reactor.Views {
             public IView? Body { get; set; } = null;
         }
 
-        public IReadOnlyList<Number?>? Columns { get; set; }
-        public IReadOnlyList<Number?>? Rows { get; set; }
+        public IReadOnlyList<Number>? Columns { get; set; }
+        public IReadOnlyList<Number>? Rows { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace Reactor.Demo.Components {
 
         public override IView Render() =>
             new GridLayout {
-                Rows = new Number?[] { null, 1.Fr() },
+                Rows = new[] { Number.Auto, 1.Fr() },
                 Children = new GridLayout.Item[] {
                     new GridLayout.Item {
                         Row = 0..1,

@@ -2,6 +2,8 @@
 
 namespace Reactor {
     public readonly struct Number {
+        public static Number Auto => new Number(0, Unit.Auto);
+
         public readonly float Value;
         public readonly Unit Unit;
 

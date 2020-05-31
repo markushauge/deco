@@ -1,8 +1,6 @@
 # Reactor
 Declarative and component based UI library for C#
 
-## How it works
-
 ```csharp
 public class App : Component {
     private readonly State<int> _count = 0;
@@ -21,8 +19,6 @@ public class App : Component {
 }
 ```
 
-Reactor uses the [MVU](https://thomasbandt.com/model-view-update) pattern known from Elm and React, is built on the idea that "UI is a function of state".
-
-## Other
+Reactor uses the [MVU](https://thomasbandt.com/model-view-update) pattern known from Elm and React, and is built on the idea that "UI is a function of state".
 
 Rendering architecture is heavily inspired by [Comet](https://github.com/Clancey/Comet).

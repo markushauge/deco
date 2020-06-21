@@ -1,4 +1,4 @@
-# Reactor
+# Deco
 Declarative and component based UI library for C#
 
 ```csharp
@@ -16,6 +16,6 @@ public class App : Component {
 }
 ```
 
-Reactor uses the [MVU](https://thomasbandt.com/model-view-update) pattern known from Elm and React, and is built on the idea that ["UI is a function of state"](https://www.kn8.lt/blog/ui-is-a-function-of-data/).
+Deco uses the [MVU](https://thomasbandt.com/model-view-update) pattern known from Elm and React, and is built on the idea that ["UI is a function of state"](https://www.kn8.lt/blog/ui-is-a-function-of-data/).
 
 Rendering architecture is heavily inspired by [Comet](https://github.com/Clancey/Comet).

@@ -1,0 +1,10 @@
+﻿<Window x:Class="Deco.Demo.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Deco.Demo.WPF"
+        Title="MainWindow"
+        Width="640"
+        Height="480"
+        WindowStartupLocation="CenterScreen">
+    <local:ComponentHost View="App" />
+</Window>
